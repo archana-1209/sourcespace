@@ -22,12 +22,12 @@ urlpatterns = [
     ),
     path(
         "account/change_password/",
-        views.change_password_view.as_view(),
+        views.PasswordChangeView.as_view(),
         name="change_password",
     ),
     path(
         "account/profile/",
-        views.profile_view.as_view(),
+        views.ProfileView.as_view(),
         name="profile",
     ),
     path(

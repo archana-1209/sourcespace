@@ -27,9 +27,12 @@ class AuthLoginView(View):
 
 class AuthLogoutView(View):
     pass
-class change_password_view(View):
+
+class PasswordChangeView(View):
     pass
-class profile_view(View):
+
+class ProfileView(View):
     pass
+
 class AuthPasswordResetView(View):
     pass
