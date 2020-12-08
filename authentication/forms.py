@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 class SignUpForm(forms.ModelForm):
     email = forms.EmailField(required=True)
     password1 = forms.CharField(widget=forms.PasswordInput())
@@ -26,10 +27,17 @@ class SignUpForm(forms.ModelForm):
     
     def clean(self):
         form_data = self.cleaned_data
+        email=form_data.get("email")
+
+        try:
+            user=User.objects.get(email=email)
+        except ObjectDoesNotExist:
+            user=None
+        if user:
+            raise ValidationError("email is already exist")
 
         password1 = form_data.get("password1")
         password2 = form_data.get("password2")
-
         if password1 != password2:
             raise ValidationError("Passwords did not match")
         return form_data
