@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 # Create your views here.
-class register_view(View):
+class AuthRegisterView(View):
     form_class = SignUpForm
     template_name = 'auth/signup.html'
 

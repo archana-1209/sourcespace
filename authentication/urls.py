@@ -17,7 +17,7 @@ urlpatterns = [
     ),
     path(
         "account/register/",
-        views.register_view.as_view(),
+        views.AuthRegisterView.as_view(),
         name="register",
     ),
     path(
