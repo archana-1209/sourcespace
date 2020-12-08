@@ -7,7 +7,7 @@ from django.contrib import messages
 # Create your views here.
 class register_view(View):
     form_class = SignUpForm
-    template_name = 'signup.html'
+    template_name = 'auth/signup.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
