@@ -1,10 +1,19 @@
-from django.shortcuts import render
+#Standard library imports.
+from django.shortcuts import render,get_object_or_404
 from django.views.generic import View
-from authentication.forms import SignUpForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.http import JsonResponse
 
-# Create your views here.
+#Related third party imports.
+from passlib.hash import django_pbkdf2_sha256 as handler
+
+
+#Local application/library specific imports.
+from authentication.forms import SignUpForm
+
+
+# User Register View
 class register_view(View):
     form_class = SignUpForm
     template_name = 'auth/signup.html'
@@ -22,14 +31,38 @@ class register_view(View):
 
         return render(request, self.template_name, {'form': form})
 
+
 class AuthLoginView(View):
     pass
 
+
 class AuthLogoutView(View):
     pass
+
+# User Change Password View
 class change_password_view(View):
-    pass
+    def post(self, request, *args, **kwargs):
+        current_password = request.POST.get('currentPassword', None)
+        new_password = request.POST.get('newPassword', None)
+        confirm_password = request.POST.get('confirmNewPassword', None)
+        try:
+            user = get_object_or_404(User, email=request.user.email)
+        except:
+            user=None
+        if user:
+            if handler.verify(current_password, user.password):
+                user.set_password(confirm_password)
+                user.save()
+                return JsonResponse({'msg':"password Change Successfully",'success':True})
+            else:
+                return JsonResponse({'error':"Invalid current Password!",'success':False})
+        else:
+            return JsonResponse({'error':"User Does Not Exist",'success':False})
+
+
+
 class profile_view(View):
     pass
+
 class AuthPasswordResetView(View):
-    pass
+    
