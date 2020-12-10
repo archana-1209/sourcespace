@@ -35,8 +35,7 @@ class AuthRegisterView(View):
 
 class AuthLoginView(View):
     pass
-
-
+# User Logout View
 class AuthLogoutView(View):
     def post(self, request, *args, **kwargs ):
         logout(request)
@@ -61,8 +60,6 @@ class PasswordChangeView(View):
                 return JsonResponse({'error':"Invalid current Password!",'success':False})
         else:
             return JsonResponse({'error':"User Does Not Exist",'success':False})
-
-
 
 class ProfileView(View):
     pass
