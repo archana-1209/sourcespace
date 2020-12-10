@@ -1,12 +1,5 @@
 from django.urls import path
-
-from authentication.views import (
-    AuthLoginView, AuthLogoutView, 
-    AuthRegisterView,
-    AuthPasswordResetView,
-    PasswordChangeView,
-    ProfileView,
-    )
+from authentication.views import (AuthLoginView, AuthLogoutView, AuthPasswordResetView, AuthRegisterView, PasswordChangeView, ProfileView)
 
 urlpatterns = [
     path(

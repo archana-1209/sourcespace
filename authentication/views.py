@@ -1,5 +1,5 @@
 #Standard library imports.
-from django.shortcuts import render, get_object_or_404, redirect 
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
@@ -15,7 +15,7 @@ from authentication.forms import SignUpForm
 
 
 # User Register View
-class register_view(View):
+class AuthRegisterView(View):
     form_class = SignUpForm
     template_name = 'auth/signup.html'
 
@@ -43,7 +43,7 @@ class AuthLogoutView(View):
         return redirect('login')
 
 # User Change Password View
-class change_password_view(View):
+class PasswordChangeView(View):
     def post(self, request, *args, **kwargs):
         current_password = request.POST.get('currentPassword', None)
         new_password = request.POST.get('newPassword', None)
@@ -64,7 +64,7 @@ class change_password_view(View):
 
 
 
-class profile_view(View):
+class ProfileView(View):
     pass
 
 class AuthPasswordResetView(View):
