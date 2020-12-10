@@ -68,4 +68,4 @@ class profile_view(View):
     pass
 
 class AuthPasswordResetView(View):
-    
+    pass
