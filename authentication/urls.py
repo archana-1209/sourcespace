@@ -1,38 +1,42 @@
 from django.urls import path
 
-from . import views
-
-app_name = "authentication"
+from authentication.views import (
+    AuthLoginView, AuthLogoutView, 
+    AuthRegisterView,
+    AuthPasswordResetView,
+    PasswordChangeView,
+    ProfileView,
+    )
 
 urlpatterns = [
     path(
-        "/account/login/",
-        views.AuthLoginView.as_view(),
+        "account/login/",
+        AuthLoginView.as_view(),
         name="login",
     ),
     path(
-        "/account/logout/",
-        views.AuthLogoutView.as_view(),
+        "account/logout/",
+        AuthLogoutView.as_view(),
         name="logout",
     ),
     path(
-        "/account/register/",
-        views.register_view,
+        "account/register/",
+        AuthRegisterView.as_view(),
         name="register",
     ),
     path(
-        "/account/change_password/",
-        views.change_password_view,
+        "account/change_password/",
+        PasswordChangeView.as_view(),
         name="change_password",
     ),
     path(
-        "/account/profile/",
-        views.profile_view,
+        "account/profile/",
+        ProfileView.as_view(),
         name="profile",
     ),
     path(
-        "/account/password_reset/",
-        views.AuthPasswordResetView.as_view(),
+        "account/password_reset/",
+        AuthPasswordResetView.as_view(),
         name="password_reset",
     ),
 ]
