@@ -33,12 +33,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password"/>
+                                <input type="password" name="pass" id="pass" oncopy="return false" onpaste="return false" placeholder="Password"/> 
                             </div>
+                            <!-- oncopy and onpaste added ( false ) so that user will not able to copy and paste the password in the confirm password and vice versa -->
                             <div class="form-group">
                                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                                <input type="password" name="re_pass" id="re_pass" oncopy="return false" onpaste="return false" placeholder="Repeat your password"/>
                             </div>
+                            
+
                             <div class="form-group form-button">
                                 <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
                             </div>
